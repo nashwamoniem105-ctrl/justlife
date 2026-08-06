@@ -27,11 +27,31 @@ if (fs.existsSync(localAssetDir)) {
         } catch (_) {}
     }
 }
+// Explicit aliases for assets whose original CDN path is unavailable in the mirror.
+const explicitAssetAliases = {
+    'ae.svg': 'ae.svg',
+    'sa.svg': 'sa.svg',
+    'svgs/question-mark-outlined.svg': 'question-mark-outlined.svg',
+    'home/SearchEmptyState.svg': 'faf9712b1a01f868.binSearchEmptyState.svg',
+    'home/download-app-android@2x.jpg': 'download-app-android@2x.jpg',
+    'home/download-app-ios@2x.jpg': 'download-app-ios@2x.jpg'
+};
+app.get(/^\/assets-local\/[^/]+\.bin(.+)$/, (req, res, next) => {
+    const relative = req.params[0].replace(/^\/+/, '');
+    const alias = explicitAssetAliases[relative];
+    if (alias) {
+        const file = path.join(localAssetDir, alias);
+        if (fs.existsSync(file)) return res.sendFile(file);
+    }
+    return next();
+});
+
 app.get(/^\/assets-local\/[^/]+\.binfonts\/(hkgrotesk-(?:regular|bold)-webfont\.ttf)$/, (req, res, next) => {
     const fontPath = path.join(localAssetDir, req.params[0]);
     if (fs.existsSync(fontPath)) return res.sendFile(fontPath);
     return next();
 });
+
 app.get(/^\/assets-local\/[^/]+\.bin(.+)$/, (req, res, next) => {
     const originalRelative = req.params[0].replace(/^\/+/, '');
     const originalPath = path.join(originalStaticDir, originalRelative);
