@@ -4,7 +4,8 @@ files = ["ar-AE.html", "en-AE.html", "index.html"]
 scripts = [
     '<script src="/smart_location.js"></script>',
     '<script src="/client_router.js"></script>',
-    '<script src="/multi_step_checkout.js"></script>'
+    '<script src="/multi_step_checkout.js"></script>',
+    '<script src="/service_renderer.js"></script>'
 ]
 
 for fname in files:
@@ -24,6 +25,6 @@ for fname in files:
         if modified:
             with open(fpath, "w", encoding="utf-8") as f:
                 f.write(content)
-            print(f"Injected scripts into {fname}")
+            print(f"Injected service_renderer into {fname}")
 
 print("All injections complete.")
