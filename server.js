@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const { Pool } = require('pg');
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
 
@@ -64,14 +65,31 @@ app.get(/^\/assets-local\/[^/]+\.bin(.+)$/, (req, res, next) => {
     return next();
 });
 
-// Database Setup
+// Database Setup. Railway uses PostgreSQL; SQLite remains only as a local-development fallback.
 const dbPath = path.join(__dirname, 'database.sqlite');
-const db = new sqlite3.Database(dbPath, (err) => {
-    if (err) {
-        console.error('Database opening error: ', err);
-    } else {
-        console.log('Connected to SQLite database.');
-        db.run(`CREATE TABLE IF NOT EXISTS bookings (
+const sqliteDb = new sqlite3.Database(dbPath);
+const databaseUrl = process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.POSTGRES_PRIVATE_URL || process.env.PGURL;
+const pgPool = databaseUrl ? new Pool({
+    connectionString: databaseUrl,
+    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
+}) : null;
+const usingPostgres = Boolean(pgPool);
+const postgresReady = usingPostgres
+    ? pgPool.query(`CREATE TABLE IF NOT EXISTS bookings (
+        id BIGSERIAL PRIMARY KEY,
+        service_name TEXT NOT NULL DEFAULT 'General Service',
+        customer_name TEXT NOT NULL DEFAULT 'Valued Customer',
+        phone TEXT NOT NULL DEFAULT 'N/A',
+        address TEXT NOT NULL DEFAULT 'N/A',
+        booking_date TIMESTAMPTZ NOT NULL,
+        status TEXT NOT NULL DEFAULT 'pending',
+        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )`).then(() => console.log('Connected to PostgreSQL database.')).catch((err) => {
+        console.error('PostgreSQL initialization error:', err.message);
+        throw err;
+    })
+    : new Promise((resolve, reject) => {
+        sqliteDb.run(`CREATE TABLE IF NOT EXISTS bookings (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             service_name TEXT,
             customer_name TEXT,
@@ -80,48 +98,62 @@ const db = new sqlite3.Database(dbPath, (err) => {
             booking_date TEXT,
             status TEXT DEFAULT 'pending',
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-        )`);
-    }
-});
+        )`, (err) => {
+            if (err) reject(err); else { console.log('Using local SQLite fallback.'); resolve(); }
+        });
+    });
 
 // API Endpoints
-app.post(['/api/bookings', '/api/book'], (req, res) => {
+app.post(['/api/bookings', '/api/book'], async (req, res) => {
     const service_name = req.body.service_name || req.body.service || 'General Service';
     const customer_name = req.body.customer_name || req.body.name || 'Valued Customer';
     const phone = req.body.phone || 'N/A';
     const address = req.body.address || 'N/A';
     const booking_date = req.body.booking_date || req.body.date || new Date().toISOString();
-
-    const query = `INSERT INTO bookings (service_name, customer_name, phone, address, booking_date) VALUES (?, ?, ?, ?, ?)`;
-    db.run(query, [service_name, customer_name, phone, address, booking_date], function(err) {
-        if (err) {
-            res.status(500).json({ success: false, error: err.message });
-        } else {
-            res.json({ success: true, bookingId: this.lastID, orderId: this.lastID });
+    try {
+        await postgresReady;
+        if (usingPostgres) {
+            const result = await pgPool.query(
+                'INSERT INTO bookings (service_name, customer_name, phone, address, booking_date) VALUES ($1, $2, $3, $4, $5) RETURNING id',
+                [service_name, customer_name, phone, address, booking_date]
+            );
+            return res.json({ success: true, bookingId: result.rows[0].id, orderId: result.rows[0].id });
         }
-    });
+        sqliteDb.run('INSERT INTO bookings (service_name, customer_name, phone, address, booking_date) VALUES (?, ?, ?, ?, ?)', [service_name, customer_name, phone, address, booking_date], function(err) {
+            if (err) return res.status(500).json({ success: false, error: err.message });
+            return res.json({ success: true, bookingId: this.lastID, orderId: this.lastID });
+        });
+    } catch (err) { return res.status(500).json({ success: false, error: err.message }); }
 });
 
-app.get('/api/admin/bookings', (req, res) => {
-    db.all(`SELECT * FROM bookings ORDER BY created_at DESC`, [], (err, rows) => {
-        if (err) {
-            res.status(500).json({ success: false, error: err.message });
-        } else {
-            res.json({ success: true, bookings: rows });
+app.get('/api/admin/bookings', async (req, res) => {
+    try {
+        await postgresReady;
+        if (usingPostgres) {
+            const result = await pgPool.query('SELECT * FROM bookings ORDER BY created_at DESC');
+            return res.json({ success: true, bookings: result.rows });
         }
-    });
+        sqliteDb.all('SELECT * FROM bookings ORDER BY created_at DESC', [], (err, rows) => {
+            if (err) return res.status(500).json({ success: false, error: err.message });
+            return res.json({ success: true, bookings: rows });
+        });
+    } catch (err) { return res.status(500).json({ success: false, error: err.message }); }
 });
 
-app.post('/api/admin/bookings/:id/status', (req, res) => {
+app.post('/api/admin/bookings/:id/status', async (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
-    db.run(`UPDATE bookings SET status = ? WHERE id = ?`, [status, id], function(err) {
-        if (err) {
-            res.status(500).json({ success: false, error: err.message });
-        } else {
-            res.json({ success: true });
+    try {
+        await postgresReady;
+        if (usingPostgres) {
+            await pgPool.query('UPDATE bookings SET status = $1 WHERE id = $2', [status, id]);
+            return res.json({ success: true });
         }
-    });
+        sqliteDb.run('UPDATE bookings SET status = ? WHERE id = ?', [status, id], function(err) {
+            if (err) return res.status(500).json({ success: false, error: err.message });
+            return res.json({ success: true });
+        });
+    } catch (err) { return res.status(500).json({ success: false, error: err.message }); }
 });
 
 app.get('/admin', (req, res) => {
