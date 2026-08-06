@@ -139,6 +139,14 @@ const appSectionFallback = `<script data-local-app-fallback>(function(){function
 function sendMirroredHtml(res, file) {
     try {
         let html = fs.readFileSync(file, 'utf8');
+        // The mirrored homepage already contains the complete rendered sections. The copied Nuxt runtime
+        // is incomplete and removes those sections during hydration, so keep the stable server-rendered DOM.
+        if (path.basename(file) === 'index.html') {
+            html = html.replace(/<script\b[^>]*src=["'][^"']*\/_nuxt\/[^"']*["'][^>]*><\/script>/gi, '');
+            html = html.replace(/\sloading=["']lazy["']/gi, ' loading="eager"');
+            const localStyles = ['SectionTitle.VdBQ9ygq.css','MobileAppDownloader.BatusIl2.css','index.V_X9n60H.css','Loading.xBdaesc-.css','TitleTextItem.BgfIqJ8y.css','CaptionTextItem.B98ug7T9.css','LocationSearch.ioU0w2Z7.css','HelperTextItem.DCvG-J3h.css','ButtonTextItem.Clk8LGEf.css','Notification.Bd6p11ET.css','default.myeD_meZ.css'].map((name) => `<link rel="stylesheet" href="/_nuxt/6/${name}">`).join('');
+            html = html.replace(/<\/head>/i, `${localStyles}</head>`);
+        }
         if (!html.includes('data-local-app-fallback')) html = html.replace(/<\/body>/i, `${appSectionFallback}</body>`);
         res.type('html').send(html);
     } catch (_) { res.sendFile(file); }
