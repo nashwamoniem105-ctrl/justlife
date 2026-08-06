@@ -79,8 +79,8 @@ app.get('/admin', (req, res) => {
     }
 });
 
-// Language & Service Routes
-app.get(['/en', '/en-AE', '/en/*'], (req, res) => {
+// Explicit service and language routes
+app.get(['/en', '/en-AE', '/en-AE/*'], (req, res) => {
     const enPath = path.join(__dirname, 'en-AE.html');
     if (fs.existsSync(enPath)) {
         res.sendFile(enPath);
@@ -89,7 +89,7 @@ app.get(['/en', '/en-AE', '/en/*'], (req, res) => {
     }
 });
 
-app.get(['/ar', '/ar-AE', '/ar/*', '/services/*', '/cleaning', '/salon', '/ac', '/deep', '/massage', '/pest'], (req, res) => {
+app.get(['/ar', '/ar-AE', '/ar-AE/*'], (req, res) => {
     const arPath = path.join(__dirname, 'ar-AE.html');
     if (fs.existsSync(arPath)) {
         res.sendFile(arPath);
@@ -102,16 +102,22 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Universal Catch-all
+// Universal Catch-all for any service subpath (e.g., /ar-AE/house-cleaning)
 app.get('*', (req, res) => {
-    if (req.path.includes('en') || req.path.includes('English')) {
+    const pathStr = req.path;
+    if (pathStr.includes('en') || pathStr.includes('English')) {
         const enPath = path.join(__dirname, 'en-AE.html');
         if (fs.existsSync(enPath)) {
             res.sendFile(enPath);
             return;
         }
     }
-    res.sendFile(path.join(__dirname, 'index.html'));
+    const arPath = path.join(__dirname, 'ar-AE.html');
+    if (fs.existsSync(arPath)) {
+        res.sendFile(arPath);
+    } else {
+        res.sendFile(path.join(__dirname, 'index.html'));
+    }
 });
 
 app.listen(PORT, '0.0.0.0', () => {
