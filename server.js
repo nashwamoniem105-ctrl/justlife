@@ -193,6 +193,9 @@ function sendMirroredHtml(res, file) {
         html = html.replace(/https:\/\/deax38zvkau9d\.cloudfront\.net/g, '/deax38zvkau9d.cloudfront.net');
         html = html.replace(/https?:\/\/(?:[^/"'\s]+\.)?justlife\.com/gi, '');
         html = html.replace(/https?:\/\/localhost:\d+/gi, '');
+        // Also localize JSON-escaped first-party URLs left inside Nuxt payloads.
+        html = html.replace(/https?:\\\/\\\/(?:www\\\.)?justlife\\\.com/gi, '');
+        html = html.replace(/https?:\\\/\\\/localhost:\\d+/gi, '');
         if (!html.includes('data-local-app-fallback')) html = html.replace(/<\/body>/i, `${appSectionFallback}</body>`);
         res.type('html').send(html);
     } catch (_) { res.sendFile(file); }
@@ -255,6 +258,19 @@ app.get(/^\/(ar-AE|ar-SA|en-AE)\/(.+)\/checkout(?:\/(details|flex))?\/?$/, (req,
     const file = path.join(mirroredCheckoutRoot, lang, rest, 'checkout', `${step}.html`);
     if (file.startsWith(`${mirroredCheckoutRoot}${path.sep}`) && fs.existsSync(file)) {
         return sendMirroredHtml(res, file);
+    }
+    // Some original service pages link to a checkout slug that was not emitted
+    // as a separate crawler artifact. Keep the user inside Free Way and show
+    // the complete local checkout shell instead of falling through to a 404 or
+    // the language homepage.
+    const fallbackCandidates = [
+        path.join(mirroredCheckoutRoot, lang, 'home-cleaning', 'checkout', 'details.html'),
+        path.join(mirroredCheckoutRoot, 'en-AE', 'home-cleaning', 'checkout', 'details.html')
+    ];
+    const fallback = fallbackCandidates.find((candidate) => fs.existsSync(candidate));
+    if (fallback) {
+        res.set('X-FreeWay-Checkout-Fallback', rest);
+        return sendMirroredHtml(res, fallback);
     }
     return next();
 });

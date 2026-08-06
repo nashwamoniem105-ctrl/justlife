@@ -51,3 +51,9 @@ Home Cleaning, PCR at Home, Women’s Salon, Women’s Spa, Furniture Cleaning, 
 - أداة التوطين عالجت 871 ملفًا نصيًا وبدّلت أكثر من 2.98 مليون مرجع نصي بسبب تكرار الأصول في الصفحات.
 - بعد استبعاد manifest وسجل الفشل وملفات أدوات السحب، لم تعد صفحات HTML تحتوي على روابط مباشرة إلى justlife.com أو cloudfront.net أو storyblok.com؛ نتيجة page_refs = 0.
 - بقيت بعض سجلات الفشل التاريخية وروابط خارجية عامة غير first-party، مثل روابط متاجر التطبيقات والشبكات الاجتماعية، وهي ليست اعتماديات لعرض الموقع.
+
+## اكتمال صفحات checkout
+
+تمت مراجعة روابط checkout من صفحات الأقسام المحلية وتنزيل الصفحات الناقصة من المسارات الرسمية بصيغة مستقلة. أضيفت 39 صفحة checkout ناقصة من المصدر `https://www.justlife.com/{lang}/{slug}/checkout/{step}`، وأصبح عدد ملفات checkout المحلية 103 ملفًا، مع حفظها داخل `mirrored-checkouts/{lang}/{slug}/checkout/`.
+
+المسارات المضافة تشمل ac-cleaning وac-cleaning-at-home وat-home-nurse-care وbeauty-for-her وbody-adjustment وdeep-cleaning-ae وdoctor-at-home وflu-vaccine-at-home وhandyman-and-maintenance وhome-cleaning وiv-therapy-at-home وlab-tests-at-home وlaundry-and-dry-cleaning وmens-spa وonline-therapy-flex وpcr-at-home وpersonal-trainer وpest-control وpet-grooming وphysiotherapy-at-home وpremium-grooming وspa-treatments، باللغات التي كانت صفحات الأقسام تشير إليها.
