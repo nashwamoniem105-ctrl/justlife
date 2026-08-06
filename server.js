@@ -10,6 +10,35 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
 
+// Compatibility for the crawler's localized asset URLs. The crawler preserved
+// the original static path after a hashed "*.bin" prefix; resolve that path
+// back to the downloaded file in assets-local by content hash.
+const localAssetDir = path.join(__dirname, 'assets-local');
+const originalStaticDir = path.join(__dirname, 'deax38zvkau9d.cloudfront.net', 'prod', 'assets', 'static');
+const crypto = require('crypto');
+const localAssetByHash = new Map();
+if (fs.existsSync(localAssetDir)) {
+    for (const filename of fs.readdirSync(localAssetDir)) {
+        const fullPath = path.join(localAssetDir, filename);
+        if (!fs.statSync(fullPath).isFile()) continue;
+        try {
+            const hash = crypto.createHash('sha256').update(fs.readFileSync(fullPath)).digest('hex');
+            localAssetByHash.set(hash, fullPath);
+        } catch (_) {}
+    }
+}
+app.get(/^\/assets-local\/[^/]+\.bin(.+)$/, (req, res, next) => {
+    const originalRelative = req.params[0].replace(/^\/+/, '');
+    const originalPath = path.join(originalStaticDir, originalRelative);
+    if (!originalPath.startsWith(`${originalStaticDir}${path.sep}`) || !fs.existsSync(originalPath)) return next();
+    try {
+        const hash = crypto.createHash('sha256').update(fs.readFileSync(originalPath)).digest('hex');
+        const localPath = localAssetByHash.get(hash);
+        if (localPath) return res.sendFile(localPath);
+    } catch (_) {}
+    return next();
+});
+
 // Database Setup
 const dbPath = path.join(__dirname, 'database.sqlite');
 const db = new sqlite3.Database(dbPath, (err) => {
@@ -100,6 +129,29 @@ function mirroredPageForRequest(requestPath) {
     const candidate = path.resolve(__dirname, `${cleanPath}.html`);
     const projectRoot = path.resolve(__dirname);
     if (!candidate.startsWith(`${projectRoot}${path.sep}`)) return null;
+    if (fs.existsSync(candidate)) return candidate;
+
+    // A few source navigation links refer to generic English service/city
+    // slugs that were not emitted as standalone files by the crawler. Prefer
+    // the closest localized service page instead of returning a blank/404 page.
+    if (segments.length === 2 && ['ar-AE', 'ar-SA', 'en-AE'].includes(segments[0])) {
+        const lang = segments[0];
+        const slug = segments[1];
+        const alternatives = [
+            path.join(__dirname, lang, `${slug}-dubai.html`),
+            path.join(__dirname, lang, `${slug}-abu-dhabi.html`),
+            path.join(__dirname, lang, `${slug}-sharjah.html`),
+            path.join(__dirname, lang, `${slug}-ajman.html`),
+            path.join(__dirname, `${lang}.html`)
+        ];
+        const fallback = alternatives.find((file) => fs.existsSync(file));
+        if (fallback) return fallback;
+    }
+    if (cleanPath === 'blog/en-AE' || cleanPath.endsWith('/my-account/help')) {
+        const lang = cleanPath.startsWith('ar-') ? cleanPath.split('/')[0] : 'en-AE';
+        const fallback = path.join(__dirname, `${lang}.html`);
+        if (fs.existsSync(fallback)) return fallback;
+    }
     return candidate;
 }
 
