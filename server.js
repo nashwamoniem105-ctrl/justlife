@@ -177,7 +177,7 @@ const homepageStabilityCss = `<style data-homepage-stability>
 .insurance-section .section-title-wrapper, .insurance-section .section-title-wrapper *, .insurance-section h2, .insurance-section p { color: #fff !important; }
 </style>`;
 const appSectionFallback = `<script data-local-app-fallback>(function(){function img(src,alt,w,h){var i=document.createElement('img');i.src=src;i.alt=alt;i.loading='lazy';if(w)i.width=w;if(h)i.height=h;return i;}function restore(){document.querySelectorAll('.mobile-app-downloader .app-icons').forEach(function(box){var a=box.querySelectorAll('a');if(a[0]&&!a[0].querySelector('img'))a[0].appendChild(img('/assets-local/faf9712b1a01f868.bindownload-app-android@2x.jpg?f=webp','Download Android App'));if(a[1]&&!a[1].querySelector('img'))a[1].appendChild(img('/assets-local/faf9712b1a01f868.bindownload-app-ios@2x.jpg?f=webp','Download iOS App'));});document.querySelectorAll('.footer-bottom .app-icons').forEach(function(box){var a=box.querySelectorAll('a');if(a[0]&&!a[0].querySelector('img'))a[0].appendChild(img('/assets-local/faf9712b1a01f868.binhome/appstore.png?f=webp','Download iOS App',125,40));if(a[1]&&!a[1].querySelector('img'))a[1].appendChild(img('/assets-local/faf9712b1a01f868.binhome/playstore.png?f=webp','Download Android App',125,40));});document.querySelectorAll('.mobile-app-downloader .right-content').forEach(function(box){if(!box.querySelector('img'))box.appendChild(img('/assets-local/faf9712b1a01f868.binhome/apps.webp?f=webp','Footer app',395,332));});}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',restore);else restore();new MutationObserver(restore).observe(document.documentElement,{childList:true,subtree:true});})();</script>`;
-function sendMirroredHtml(res, file) {
+function sendMirroredHtml(res, file, query = {}) {
     try {
         let html = fs.readFileSync(file, 'utf8');
         // The mirrored homepage already contains the complete rendered sections. The copied Nuxt runtime
@@ -196,6 +196,14 @@ function sendMirroredHtml(res, file) {
         // Also localize JSON-escaped first-party URLs left inside Nuxt payloads.
         html = html.replace(/https?:\\\/\\\/(?:www\\\.)?justlife\\\.com/gi, '');
         html = html.replace(/https?:\\\/\\\/localhost:\\d+/gi, '');
+        const voucher = typeof query.voucher === 'string' ? query.voucher.trim() : '';
+        if (voucher) {
+            const encodedVoucher = encodeURIComponent(voucher);
+            html = html.replace(/(href=["'])(\/(?:ar-AE|ar-SA|en-AE)\/[^"']+\/checkout(?:\/[^"']*)?)(["'])/gi, (match, prefix, href, suffix) => {
+                if (/[?&]voucher=/i.test(href)) return match;
+                return `${prefix}${href}?voucher=${encodedVoucher}${suffix}`;
+            });
+        }
         if (!html.includes('data-local-app-fallback')) html = html.replace(/<\/body>/i, `${appSectionFallback}</body>`);
         res.type('html').send(html);
     } catch (_) { res.sendFile(file); }
@@ -224,6 +232,18 @@ function mirroredPageForRequest(requestPath) {
     if (!candidate.startsWith(`${projectRoot}${path.sep}`)) return null;
     if (fs.existsSync(candidate)) return candidate;
 
+    const pageAliases = {
+        'cleaning-services': 'house-cleaning', 'cleaning-companies': 'house-cleaning', 'deep-cleaning': 'deep-cleaning-dubai',
+        'womens-salon': 'salon-services-at-home', 'womens-spa': 'spa-and-massage-service-at-home',
+        'mens-grooming': 'mens-salon', 'premium-grooming': 'mens-salon', 'ac-cleaning-at-home': 'ac-cleaning',
+        'doctor-at-home': 'doctor-on-call', 'home-painting': 'home-painting-services', 'hair-care': 'hair-salon-at-home',
+        'beauty-for-her': 'salon-services-at-home', 'furniture-cleaning-service': 'furniture-cleaning', 'laundry-and-dry-cleaning': 'laundry'
+    };
+    if (segments.length === 2 && pageAliases[segments[1]]) {
+        const alias = path.join(__dirname, segments[0], `${pageAliases[segments[1]]}.html`);
+        if (fs.existsSync(alias)) return alias;
+    }
+
     // A few source navigation links refer to generic English service/city
     // slugs that were not emitted as standalone files by the crawler. Prefer
     // the closest localized service page instead of returning a blank/404 page.
@@ -251,34 +271,48 @@ function mirroredPageForRequest(requestPath) {
 // Serve the downloaded checkout page that belongs to the exact original route.
 // Each service keeps its own original checkout path and rendered HTML instead of sharing booking.html.
 const mirroredCheckoutRoot = path.join(__dirname, 'mirrored-checkouts');
+const checkoutServiceAliases = {
+    'home-cleaning': 'home-cleaning', 'house-cleaning': 'home-cleaning',
+    'beauty-for-her': 'beauty-for-her', 'salon-services-at-home': 'beauty-for-her',
+    'spa-and-massage-service-at-home': 'spa-treatments', 'womens-spa': 'spa-treatments',
+    'ac-cleaning': 'ac-cleaning-at-home', 'ac-cleaning-at-home': 'ac-cleaning-at-home', 'ac_cleaning_at_home': 'ac_cleaning_at_home',
+    'pcr-at-home': 'pcr-at-home', 'furniture-cleaning': 'furniture-cleaning',
+    'carpet-cleaning': 'furniture-cleaning', 'sofa-cleaning': 'furniture-cleaning', 'mattress-cleaning': 'furniture-cleaning', 'curtain-cleaning': 'furniture-cleaning',
+    'mens-salon': 'premium-grooming', 'mens-grooming': 'premium-grooming', 'premium-grooming': 'premium-grooming',
+    'lab-tests-at-home': 'lab-tests-at-home', 'pest-control': 'pest-control',
+    'disinfection': 'disinfection', 'disinfection-service': 'disinfection',
+    'doctor-on-call': 'doctor-at-home', 'doctor-at-home': 'doctor-at-home',
+    'handyman-services': 'handyman-and-maintenance', 'electrician-services': 'handyman-and-maintenance', 'plumber-services': 'handyman-and-maintenance', 'handyman-and-maintenance': 'handyman-and-maintenance',
+    'home-painting-services': 'home-painting', 'home-painting': 'home-painting',
+    'laundry': 'laundry-and-dry-cleaning', 'laundry-and-dry-cleaning': 'laundry-and-dry-cleaning',
+    'packers-and-movers': 'packers-and-movers', 'personal-trainer-at-home': 'personal-trainer',
+    'physiotherapy-at-home': 'physiotherapy-at-home', 'pet-grooming': 'pet-grooming',
+    'iv-therapy-at-home': 'iv-therapy-at-home', 'body-adjustment': 'body-adjustment', 'online-therapy-flex': 'online-therapy-flex',
+    'babysitting-at-home': 'babysitting-at-home', 'car-wash-at-home': 'car-wash-at-home', 'flu-vaccine-at-home': 'flu-vaccine-at-home', 'at-home-nurse-care': 'at-home-nurse-care'
+};
+function findCheckoutFile(lang, rest, step) {
+    const key = rest.replace(/^\/+|\/+$/g, '').split('/').pop();
+    const service = checkoutServiceAliases[key] || key;
+    const candidates = [
+        path.join(mirroredCheckoutRoot, lang, service, 'checkout', `${step}.html`),
+        path.join(mirroredCheckoutRoot, 'en-AE', service, 'checkout', `${step}.html`),
+        path.join(mirroredCheckoutRoot, 'ar-AE', service, 'checkout', `${step}.html`)
+    ];
+    return candidates.find((candidate) => fs.existsSync(candidate));
+}
 app.get(/^\/(ar-AE|ar-SA|en-AE)\/(.+)\/checkout(?:\/(details|flex))?\/?$/, (req, res, next) => {
     const lang = req.params[0];
     const rest = req.params[1];
     const step = req.params[2] || 'flex';
-    const file = path.join(mirroredCheckoutRoot, lang, rest, 'checkout', `${step}.html`);
-    if (file.startsWith(`${mirroredCheckoutRoot}${path.sep}`) && fs.existsSync(file)) {
-        return sendMirroredHtml(res, file);
-    }
-    // Some original service pages link to a checkout slug that was not emitted
-    // as a separate crawler artifact. Keep the user inside Free Way and show
-    // the complete local checkout shell instead of falling through to a 404 or
-    // the language homepage.
-    const fallbackCandidates = [
-        path.join(mirroredCheckoutRoot, lang, 'home-cleaning', 'checkout', 'details.html'),
-        path.join(mirroredCheckoutRoot, 'en-AE', 'home-cleaning', 'checkout', 'details.html')
-    ];
-    const fallback = fallbackCandidates.find((candidate) => fs.existsSync(candidate));
-    if (fallback) {
-        res.set('X-FreeWay-Checkout-Fallback', rest);
-        return sendMirroredHtml(res, fallback);
-    }
+    const file = findCheckoutFile(lang, rest, step);
+    if (file) return sendMirroredHtml(res, file, req.query);
     return next();
 });
 
 app.get('*', (req, res, next) => {
     const mirroredPage = mirroredPageForRequest(req.path);
     if (mirroredPage && fs.existsSync(mirroredPage)) {
-        return sendMirroredHtml(res, mirroredPage);
+        return sendMirroredHtml(res, mirroredPage, req.query);
     }
     return next();
 });
