@@ -8,6 +8,8 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Serve static assets from root (_nuxt, etc.)
 app.use(express.static(__dirname));
 
 // Database Setup
@@ -30,7 +32,7 @@ const db = new sqlite3.Database(dbPath, (err) => {
     }
 });
 
-// API Endpoints
+// API Endpoints for Bookings & Checkout
 app.post(['/api/bookings', '/api/book'], (req, res) => {
     const service_name = req.body.service_name || req.body.service || 'General Service';
     const customer_name = req.body.customer_name || req.body.name || 'Valued Customer';
@@ -79,38 +81,11 @@ app.get('/admin', (req, res) => {
     }
 });
 
-// Explicit service and language routes
-app.get(['/en', '/en-AE', '/en-AE/*'], (req, res) => {
-    const enPath = path.join(__dirname, 'en-AE.html');
-    if (fs.existsSync(enPath)) {
-        res.sendFile(enPath);
-    } else {
-        res.sendFile(path.join(__dirname, 'index.html'));
-    }
-});
-
-app.get(['/ar', '/ar-AE', '/ar-AE/*'], (req, res) => {
-    const arPath = path.join(__dirname, 'ar-AE.html');
-    if (fs.existsSync(arPath)) {
-        res.sendFile(arPath);
-    } else {
-        res.sendFile(path.join(__dirname, 'index.html'));
-    }
-});
-
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
-
-// Universal Catch-all for any service subpath (e.g., /ar-AE/house-cleaning)
-app.get('*', (req, res) => {
-    const pathStr = req.path;
-    if (pathStr.includes('en') || pathStr.includes('English')) {
-        const enPath = path.join(__dirname, 'en-AE.html');
-        if (fs.existsSync(enPath)) {
-            res.sendFile(enPath);
-            return;
-        }
+// Serve original Justlife Nuxt SPA for all frontend routes and service subpaths
+app.get(['/ar', '/ar-AE', '/ar-AE/*', '/en', '/en-AE', '/en-AE/*', '/services', '/services/*', '/*'], (req, res, next) => {
+    // If request is for an API or static asset file, let express.static handle it
+    if (req.path.startsWith('/api') || req.path.startsWith('/_nuxt') || req.path.includes('.')) {
+        return next();
     }
     const arPath = path.join(__dirname, 'ar-AE.html');
     if (fs.existsSync(arPath)) {
@@ -121,5 +96,5 @@ app.get('*', (req, res) => {
 });
 
 app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });

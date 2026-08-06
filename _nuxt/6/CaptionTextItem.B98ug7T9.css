@@ -1,17 +1,1 @@
-.caption-text-item[data-v-d351a1da] {
-    font-size: .8125rem !important;
-    font-stretch: normal;
-    font-style: normal;
-    font-weight: 400 !important;
-    letter-spacing: normal;
-    line-height: 1.25rem
-}
-
-.caption-text-item.font-xs[data-v-d351a1da] {
-    font-size: .625rem !important
-}
-
-.caption-text-item.bold[data-v-d351a1da],
-.has-bold-item[data-v-d351a1da] {
-    font-weight: 700 !important
-}
+.caption-text-item[data-v-d351a1da]{font-size:.8125rem!important;font-stretch:normal;font-style:normal;font-weight:400!important;letter-spacing:normal;line-height:1.25rem}.caption-text-item.font-xs[data-v-d351a1da]{font-size:.625rem!important}.caption-text-item.bold[data-v-d351a1da],.has-bold-item[data-v-d351a1da]{font-weight:700!important}
