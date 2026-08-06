@@ -1,0 +1,2 @@
+import{d,K as t,B as s,D as a}from"./CYJpyD6L.js";try{let e=typeof window<"u"?window:typeof global<"u"?global:typeof globalThis<"u"?globalThis:typeof self<"u"?self:{},n=new e.Error().stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="2b03f8a0-fbd7-40ac-999d-c5dc0106343f",e._sentryDebugIdIdentifier="sentry-dbid-2b03f8a0-fbd7-40ac-999d-c5dc0106343f")}catch{}const f=d({__name:"404",setup(e){return t({statusCode:404,message:"Caught by lang/careem/error/404 page"}),(n,r)=>(a(),s("div"))}});export{f as default};
+

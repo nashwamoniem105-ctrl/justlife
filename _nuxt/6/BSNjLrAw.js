@@ -1,0 +1,2 @@
+import{d as t,K as a,B as s,D as o}from"./CYJpyD6L.js";try{let e=typeof window<"u"?window:typeof global<"u"?global:typeof globalThis<"u"?globalThis:typeof self<"u"?self:{},n=new e.Error().stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="b5c6e554-77c9-4481-b04a-64a1b46441ce",e._sentryDebugIdIdentifier="sentry-dbid-b5c6e554-77c9-4481-b04a-64a1b46441ce")}catch{}const l=t({__name:"[...all]",setup(e){return a({statusCode:404,message:"Caught by lang's catch-all page"}),(n,d)=>(o(),s("div"))}});export{l as default};
+
