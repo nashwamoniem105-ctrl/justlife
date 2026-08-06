@@ -57,3 +57,11 @@ Home Cleaning, PCR at Home, Women’s Salon, Women’s Spa, Furniture Cleaning, 
 تمت مراجعة روابط checkout من صفحات الأقسام المحلية وتنزيل الصفحات الناقصة من المسارات الرسمية بصيغة مستقلة. أضيفت 39 صفحة checkout ناقصة من المصدر `https://www.justlife.com/{lang}/{slug}/checkout/{step}`، وأصبح عدد ملفات checkout المحلية 103 ملفًا، مع حفظها داخل `mirrored-checkouts/{lang}/{slug}/checkout/`.
 
 المسارات المضافة تشمل ac-cleaning وac-cleaning-at-home وat-home-nurse-care وbeauty-for-her وbody-adjustment وdeep-cleaning-ae وdoctor-at-home وflu-vaccine-at-home وhandyman-and-maintenance وhome-cleaning وiv-therapy-at-home وlab-tests-at-home وlaundry-and-dry-cleaning وmens-spa وonline-therapy-flex وpcr-at-home وpersonal-trainer وpest-control وpet-grooming وphysiotherapy-at-home وpremium-grooming وspa-treatments، باللغات التي كانت صفحات الأقسام تشير إليها.
+
+## مقارنة مباشرة مع الصفحات الأصلية — 2026-08-07
+
+استخراج الصفحات الأصلية أكد أن الصفحة الرئيسية تحتوي على hero، شبكة الخدمات، قسم الأسباب الأربعة، قسم Promise الأزرق، ثم تنزيل التطبيق والتذييل. صفحة `house-cleaning` تستخدم زر Book Now إلى `/en-AE/home-cleaning/checkout/details`، بينما صفحة `salon-services-at-home` تستخدم `/en-AE/beauty-for-her/checkout/flex`، وصفحة `doctor-on-call` تستخدم `/en-AE/doctor-at-home/checkout/flex`. هذه المسارات يجب أن تبقى محلية في Free Way، ولا يكفي دعم slug صفحة المحتوى فقط.
+
+المقارنة النصية تؤكد كذلك أن صفحات الخدمات الأصلية ليست شاشة حجز عامة؛ فهي تحتوي على header وbreadcrumb وhero وصورة وخطاب تفصيلي وأقسام فرعية وروابط خدمات ومناطق خدمة وتنزيل التطبيق والتذييل. لذلك معيار التدقيق هو وجود صفحة المحتوى الكاملة + مسار checkout الخاص بالخدمة، وليس مجرد استجابة HTTP 200.
+
+المصادر: https://www.justlife.com/en-AE، https://www.justlife.com/en-AE/house-cleaning، https://www.justlife.com/en-AE/salon-services-at-home، https://www.justlife.com/en-AE/doctor-on-call.
