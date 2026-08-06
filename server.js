@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(__dirname));
+app.use(express.static(__dirname, { index: false }));
 
 // Compatibility for the crawler's localized asset URLs. The crawler preserved
 // the original static path after a hashed "*.bin" prefix; resolve that path
@@ -27,6 +27,11 @@ if (fs.existsSync(localAssetDir)) {
         } catch (_) {}
     }
 }
+app.get(/^\/assets-local\/[^/]+\.binfonts\/(hkgrotesk-(?:regular|bold)-webfont\.ttf)$/, (req, res, next) => {
+    const fontPath = path.join(localAssetDir, req.params[0]);
+    if (fs.existsSync(fontPath)) return res.sendFile(fontPath);
+    return next();
+});
 app.get(/^\/assets-local\/[^/]+\.bin(.+)$/, (req, res, next) => {
     const originalRelative = req.params[0].replace(/^\/+/, '');
     const originalPath = path.join(originalStaticDir, originalRelative);
@@ -108,6 +113,17 @@ app.get('/admin', (req, res) => {
     }
 });
 
+// Restore image components that can become empty after client hydration when
+// the original image metadata endpoint is unavailable in the mirrored site.
+const appSectionFallback = `<script data-local-app-fallback>(function(){function img(src,alt,w,h){var i=document.createElement('img');i.src=src;i.alt=alt;i.loading='lazy';if(w)i.width=w;if(h)i.height=h;return i;}function restore(){document.querySelectorAll('.mobile-app-downloader .app-icons').forEach(function(box){var a=box.querySelectorAll('a');if(a[0]&&!a[0].querySelector('img'))a[0].appendChild(img('/assets-local/download-app-android@2x.jpg?f=webp','Download Android App'));if(a[1]&&!a[1].querySelector('img'))a[1].appendChild(img('/assets-local/download-app-ios@2x.jpg?f=webp','Download iOS App'));});document.querySelectorAll('.footer-bottom .app-icons').forEach(function(box){var a=box.querySelectorAll('a');if(a[0]&&!a[0].querySelector('img'))a[0].appendChild(img('/assets-local/faf9712b1a01f868.binhome/appstore.png?f=webp','Download iOS App',125,40));if(a[1]&&!a[1].querySelector('img'))a[1].appendChild(img('/assets-local/faf9712b1a01f868.binhome/playstore.png?f=webp','Download Android App',125,40));});document.querySelectorAll('.mobile-app-downloader .right-content').forEach(function(box){if(!box.querySelector('img'))box.appendChild(img('/assets-local/faf9712b1a01f868.binhome/apps.webp?f=webp','Footer app',395,332));});}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',restore);else restore();new MutationObserver(restore).observe(document.documentElement,{childList:true,subtree:true});})();</script>`;
+function sendMirroredHtml(res, file) {
+    try {
+        let html = fs.readFileSync(file, 'utf8');
+        if (!html.includes('data-local-app-fallback')) html = html.replace(/<\/body>/i, `${appSectionFallback}</body>`);
+        res.type('html').send(html);
+    } catch (_) { res.sendFile(file); }
+}
+
 // Route every mirrored page through its clean URL, e.g. /ar-AE/house-cleaning
 // -> /ar-AE/house-cleaning.html. The requested path is normalized first so a
 // URL can never escape the project directory.
@@ -166,7 +182,7 @@ app.get(/^\/((?:ar-AE|ar-SA|en-AE)\/[^/]+)\/checkout(?:\/[^/]+)?$/, (req, res, n
 app.get('*', (req, res, next) => {
     const mirroredPage = mirroredPageForRequest(req.path);
     if (mirroredPage && fs.existsSync(mirroredPage)) {
-        return res.sendFile(mirroredPage);
+        return sendMirroredHtml(res, mirroredPage);
     }
     return next();
 });
