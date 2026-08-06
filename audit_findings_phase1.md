@@ -65,3 +65,32 @@ Home Cleaning, PCR at Home, Women’s Salon, Women’s Spa, Furniture Cleaning, 
 المقارنة النصية تؤكد كذلك أن صفحات الخدمات الأصلية ليست شاشة حجز عامة؛ فهي تحتوي على header وbreadcrumb وhero وصورة وخطاب تفصيلي وأقسام فرعية وروابط خدمات ومناطق خدمة وتنزيل التطبيق والتذييل. لذلك معيار التدقيق هو وجود صفحة المحتوى الكاملة + مسار checkout الخاص بالخدمة، وليس مجرد استجابة HTTP 200.
 
 المصادر: https://www.justlife.com/en-AE، https://www.justlife.com/en-AE/house-cleaning، https://www.justlife.com/en-AE/salon-services-at-home، https://www.justlife.com/en-AE/doctor-on-call.
+
+## مصفوفة تحقق Railway بعد الرفع — 2026-08-07
+
+جميع المسارات التالية أعادت HTTP 200 من `https://justlife-ea.up.railway.app` بعد آخر رفع إلى GitHub. صفحات الأقسام أعادت HTML كاملًا بعناوينها الأصلية، وصفحات checkout أعادت HTML محليًا بحجم يقارب 176 KB.
+
+| القسم | رابط Railway | النتيجة |
+|---|---|---|
+| Home Cleaning | https://justlife-ea.up.railway.app/en-AE/house-cleaning | 200 |
+| PCR at Home | https://justlife-ea.up.railway.app/en-AE/pcr-at-home | 200 |
+| Women’s Salon | https://justlife-ea.up.railway.app/en-AE/salon-services-at-home | 200 |
+| Women’s Spa | https://justlife-ea.up.railway.app/en-AE/spa-and-massage-service-at-home | 200 |
+| Furniture Cleaning | https://justlife-ea.up.railway.app/en-AE/furniture-cleaning | 200 |
+| A/C Cleaning | https://justlife-ea.up.railway.app/en-AE/ac-cleaning | 200 |
+| Premium Men’s Grooming | https://justlife-ea.up.railway.app/en-AE/mens-salon | 200 |
+| Lab at Home | https://justlife-ea.up.railway.app/en-AE/lab-tests-at-home | 200 |
+| Pest Control | https://justlife-ea.up.railway.app/en-AE/pest-control | 200 |
+| Disinfection | https://justlife-ea.up.railway.app/en-AE/disinfection-service | 200 |
+| Home Cleaning checkout | https://justlife-ea.up.railway.app/en-AE/home-cleaning/checkout/details | 200 |
+| Beauty for Her checkout | https://justlife-ea.up.railway.app/en-AE/beauty-for-her/checkout/flex | 200 |
+| Doctor at Home checkout | https://justlife-ea.up.railway.app/en-AE/doctor-at-home/checkout/flex | 200 |
+| PCR checkout | https://justlife-ea.up.railway.app/en-AE/pcr-at-home/checkout/flex | 200 |
+| Furniture Cleaning checkout | https://justlife-ea.up.railway.app/en-AE/furniture-cleaning/checkout/flex | 200 |
+| A/C checkout | https://justlife-ea.up.railway.app/en-AE/ac-cleaning-at-home/checkout/flex | 200 |
+| Premium Grooming checkout | https://justlife-ea.up.railway.app/en-AE/premium-grooming/checkout/flex | 200 |
+| Lab Tests checkout | https://justlife-ea.up.railway.app/en-AE/lab-tests-at-home/checkout/flex | 200 |
+| Pest Control checkout | https://justlife-ea.up.railway.app/en-AE/pest-control/checkout/flex | 200 |
+| Disinfection checkout | https://justlife-ea.up.railway.app/en-AE/disinfection/checkout/flex | 200 |
+
+ملاحظة المطابقة: تحقق HTTP ووجود HTML لا يثبت تطابقًا بصريًا حرفيًا لكل بكسل. ما ثبت هنا هو أن أقسام الصفحة الرئيسية ومسارات الصفحات والـ checkout المقابلة تعمل، وأن الصفحة الرئيسية تستخدم أصولًا محلية ومسارات محلية. توجد فروقات تقنية مقصودة في العنوان والهوية واسم النطاق لأن النسخة منشورة كـ Free Way على Railway، وليست الموقع الأصلي نفسه.

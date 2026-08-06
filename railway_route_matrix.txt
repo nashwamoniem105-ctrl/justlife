@@ -1,0 +1,20 @@
+/en-AE/house-cleaning                                      200 217998 Home Cleaning Services in Dubai | Hourly &amp; One Time &amp; Weekly
+/en-AE/pcr-at-home                                         200 207086 Covid-19 PCR Test At Home in Dubai and Abu Dhabi
+/en-AE/salon-services-at-home                              200 219927 Salon and Beauty Home Services - Women&#x27;s Salon at Home
+/en-AE/spa-and-massage-service-at-home                     200 196786 Women&#x27;s Spa and Massage Home Service in United Arab Emirates
+/en-AE/furniture-cleaning                                  200 202426 Furniture Cleaning Services in United Arab Emirates
+/en-AE/ac-cleaning                                         200 200342 AC Cleaning, Repair &amp; Maintenance Services in United Arab Emirates | Justlife
+/en-AE/mens-salon                                          200 196038 Men&#x27;s Salon and Barber Services at Home in United Arab Emirates
+/en-AE/lab-tests-at-home                                   200 193344 Lab Test at Home - Diagnostic Blood Test Home Service
+/en-AE/pest-control                                        200 215742 Pest Control Services - Rat, Insect, Termite Removal Treatment
+/en-AE/disinfection-service                                200 192200 Home Disinfection and Sanitization Services
+/en-AE/home-cleaning/checkout/details                      200 175359 Home Cleaning Services in UAE
+/en-AE/beauty-for-her/checkout/flex                        200 176271 Home Services in UAE - Beauty for Her
+/en-AE/doctor-at-home/checkout/flex                        200 176092 Justlife Home Services – Cleaning, Beauty, Spa, Handyman &amp; More
+/en-AE/pcr-at-home/checkout/flex                           200 176169 Home Services in UAE - Cleaning, Beauty, PCR, &amp; More
+/en-AE/furniture-cleaning/checkout/flex                    200 176343 Justlife Home Services – Cleaning, Beauty, Spa, Handyman &amp; More
+/en-AE/ac-cleaning-at-home/checkout/flex                   200 176317 Justlife Home Services – Cleaning, Beauty, Spa, Handyman &amp; More
+/en-AE/premium-grooming/checkout/flex                      200 176251 Home Services in UAE - Cleaning, Beauty, PCR, &amp; More
+/en-AE/lab-tests-at-home/checkout/flex                     200 176515 Justlife Home Services – Cleaning, Beauty, Spa, Handyman &amp; More
+/en-AE/pest-control/checkout/flex                          200 175998 Home Services in UAE - Cleaning, Beauty, PCR, &amp; More
+/en-AE/disinfection/checkout/flex                          200 176354 Home Services in UAE - Disinfection Services
