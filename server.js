@@ -8,8 +8,6 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// Serve static assets from root (_nuxt, etc.)
 app.use(express.static(__dirname));
 
 // Database Setup
@@ -32,7 +30,7 @@ const db = new sqlite3.Database(dbPath, (err) => {
     }
 });
 
-// API Endpoints for Bookings & Checkout
+// API Endpoints
 app.post(['/api/bookings', '/api/book'], (req, res) => {
     const service_name = req.body.service_name || req.body.service || 'General Service';
     const customer_name = req.body.customer_name || req.body.name || 'Valued Customer';
@@ -81,18 +79,34 @@ app.get('/admin', (req, res) => {
     }
 });
 
-// Serve original Justlife Nuxt SPA for all frontend routes and service subpaths
-app.get(['/ar', '/ar-AE', '/ar-AE/*', '/en', '/en-AE', '/en-AE/*', '/services', '/services/*', '/*'], (req, res, next) => {
-    // If request is for an API or static asset file, let express.static handle it
-    if (req.path.startsWith('/api') || req.path.startsWith('/_nuxt') || req.path.includes('.')) {
-        return next();
+// Explicit Service Routes for standalone HTML files
+app.get('/ar-AE/:service', (req, res, next) => {
+    const serviceName = req.params.service;
+    const filePath = path.join(__dirname, 'ar-AE', `${serviceName}.html`);
+    if (fs.existsSync(filePath)) {
+        res.sendFile(filePath);
+    } else {
+        next();
     }
-    const arPath = path.join(__dirname, 'ar-AE.html');
-    if (fs.existsSync(arPath)) {
-        res.sendFile(arPath);
+});
+
+app.get(['/ar', '/ar-AE', '/en', '/en-AE'], (req, res) => {
+    const langFile = req.path.startsWith('/en') ? 'en-AE.html' : 'ar-AE.html';
+    const targetPath = path.join(__dirname, langFile);
+    if (fs.existsSync(targetPath)) {
+        res.sendFile(targetPath);
     } else {
         res.sendFile(path.join(__dirname, 'index.html'));
     }
+});
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Universal Catch-all
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'ar-AE.html'));
 });
 
 app.listen(PORT, '0.0.0.0', () => {
