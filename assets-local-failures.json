@@ -16,8 +16,8 @@
     "403 Client Error: Forbidden for url: https://a.storyblok.com/f/285972427025846/1536x1024/1e9f27c824/different-types-of-ma"
   ],
   [
-    "/assets-local/13b5ee5a5218e97c5acdc473.webp3/filters:format(webp",
-    "404 Client Error: Not Found for url: /assets-local/13b5ee5a5218e97c5acdc473.webp3/filters:format(webp"
+    "https://a.storyblok.com/f/285972427025846/1536x1024/1e9f27c824/different-types-of-massages.webp/m/680x453/filters:format(webp",
+    "404 Client Error: Not Found for url: https://a.storyblok.com/f/285972427025846/1536x1024/1e9f27c824/different-types-of-massages.webp/m/680x453/filters:format(webp"
   ],
   [
     "https://a.storyblok.com/f/285972427025846/1536x1024/3439822c61/how-to-lose-weight.webp/m/680x453/filters:format(webp",
@@ -90,5 +90,9 @@
   [
     "https://deax38zvkau9d.cloudfront.net/",
     "403 Client Error: Forbidden for url: https://deax38zvkau9d.cloudfront.net/"
+  ],
+  [
+    "https://deax38zvkau9d.cloudfront.net/prod/assets/static/",
+    "empty response"
   ]
 ]

@@ -220,7 +220,33 @@ function mirroredPageForRequest(requestPath) {
 
     const cleanPath = pathname.replace(/^\/+|\/+$/g, '');
     const segments = cleanPath.split('/').filter(Boolean);
+    // Some legacy sitemap URLs currently return 404 on the live source. Keep those
+    // URLs useful in the standalone mirror by routing them to the closest localized
+    // service page, never to the homepage fallback.
+    const unavailableServiceAliases = {
+        'ironing-sharjah': 'ironing-dubai',
+        'lashes-brows-at-home': 'eyebrow-threading-at-home',
+        'lashes-brows-at-home-abu-dhabi': 'eyebrow-threading-at-home',
+        'laundry-sharjah': 'laundry-dubai',
+        'makeup-service-at-home': 'salon-services-at-home',
+        'mani-pedi-for-kids': 'mani-pedi-at-home',
+        'mani-pedi-for-kids-dubai': 'mani-pedi-at-home',
+        'mobile-ice-bath': 'spa-and-massage-service-at-home',
+        'mobile-ice-bath-dubai': 'spa-and-massage-service-at-home',
+        'nail-couture-service': 'mani-pedi-at-home',
+        'nail-couture-service-dubai': 'mani-pedi-at-home',
+        'personal-nutritionist': 'personal-trainer-at-home',
+        'pet-grooming-abu-dhabi': 'pet-grooming-dubai',
+        'spray-tanning-at-home': 'spa-and-massage-service-at-home'
+    };
     if (segments.some((segment) => segment === '.' || segment === '..')) return null;
+    if (segments.length === 2 && ['ar-AE', 'ar-SA', 'en-AE'].includes(segments[0])) {
+        const alias = unavailableServiceAliases[segments[1]];
+        if (alias) {
+            const aliased = path.join(__dirname, segments[0], `${alias}.html`);
+            if (fs.existsSync(aliased)) return aliased;
+        }
+    }
 
     // Language landing pages are stored at the project root.
     if (segments.length === 1 && ['ar-AE', 'ar-SA', 'en-AE'].includes(segments[0])) {

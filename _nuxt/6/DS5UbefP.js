@@ -559,7 +559,7 @@ const i = {
                     i: [{
                         t: 3
                     }],
-                    s: "Address /assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.bin Building Name"
+                    s: "Address /assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.bin Building Name"
                 }
             },
             flat_villa_no: {
@@ -569,7 +569,7 @@ const i = {
                     i: [{
                         t: 3
                     }],
-                    s: "Flat /assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.bin Villa No."
+                    s: "Flat /assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.bin Villa No."
                 }
             },
             directions: {
@@ -1602,7 +1602,7 @@ const i = {
                     i: [{
                         t: 3
                     }],
-                    s: "7 days /assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.bin week"
+                    s: "7 days /assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.bin week"
                 }
             },
             time_text: {
@@ -2202,7 +2202,7 @@ const i = {
                         i: [{
                             t: 3
                         }],
-                        s: "Please select a new time/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.bindate slot to complete your booking."
+                        s: "Please select a new time/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.bindate slot to complete your booking."
                     }
                 },
                 buttonTitle: {
@@ -2718,7 +2718,7 @@ const i = {
                             i: [{
                                 t: 3
                             }],
-                            s: "Building/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binVilla Name"
+                            s: "Building/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.binVilla Name"
                         }
                     },
                     building_name_error: {
@@ -3587,7 +3587,7 @@ const i = {
                         i: [{
                             t: 3
                         }],
-                        s: "Credit /assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.bin Debit Card"
+                        s: "Credit /assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.bin Debit Card"
                     }
                 },
                 change: {
@@ -3735,7 +3735,7 @@ const i = {
                             i: [{
                                 t: 3
                             }],
-                            s: "Exp. Date (MM/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binYY)"
+                            s: "Exp. Date (MM/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.binYY)"
                         }
                     },
                     expiry_date_placeholder: {
@@ -3745,7 +3745,7 @@ const i = {
                             i: [{
                                 t: 3
                             }],
-                            s: "MM/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binYY"
+                            s: "MM/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.binYY"
                         }
                     },
                     security_code: {
@@ -5322,7 +5322,7 @@ const i = {
                 i: [{
                     t: 3
                 }],
-                s: "Please <a href=''>reload the page</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.bina> and try again"
+                s: "Please <a href=''>reload the page</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.bina> and try again"
             }
         },
         cannot_change_city: {
@@ -5588,7 +5588,7 @@ const i = {
                     k: "amount"
                 }, {
                     t: 3,
-                    v: " /assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.bin Hr"
+                    v: " /assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.bin Hr"
                 }]
             }
         }
@@ -6423,7 +6423,7 @@ const i = {
                     i: [{
                         t: 3
                     }],
-                    s: "Hang/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binFold towels"
+                    s: "Hang/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.binFold towels"
                 }
             },
             item_5: {
@@ -6507,7 +6507,7 @@ const i = {
                     i: [{
                         t: 3
                     }],
-                    s: "Vacuum floors /assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.bin rug"
+                    s: "Vacuum floors /assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.bin rug"
                 }
             },
             item_3: {
@@ -6629,7 +6629,7 @@ const i = {
                     i: [{
                         t: 3
                     }],
-                    s: "Clean balcony/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binpatio"
+                    s: "Clean balcony/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.binpatio"
                 }
             },
             item_5: {
@@ -6649,7 +6649,7 @@ const i = {
                     i: [{
                         t: 3
                     }],
-                    s: "Clean inside oven/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binfridge"
+                    s: "Clean inside oven/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.binfridge"
                 }
             }
         }
@@ -10138,7 +10138,7 @@ const i = {
                 k: "percentage"
             }, {
                 t: 3,
-                v: "%</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binstrong> by choosing "
+                v: "%</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.binstrong> by choosing "
             }, {
                 t: 4,
                 k: "days"
@@ -10834,7 +10834,7 @@ const i = {
                 k: "amount"
             }, {
                 t: 3,
-                v: "</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binstrong> discount by selecting a new time slot!"
+                v: "</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.binstrong> discount by selecting a new time slot!"
             }]
         }
     },
@@ -10870,7 +10870,7 @@ const i = {
                 k: "amount"
             }, {
                 t: 3,
-                v: " Off!</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binstrong> 💸"
+                v: " Off!</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.binstrong> 💸"
             }]
         }
     },
@@ -10886,7 +10886,7 @@ const i = {
                 k: "amount"
             }, {
                 t: 3,
-                v: " Off</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binstrong> 💸"
+                v: " Off</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.binstrong> 💸"
             }]
         }
     },
@@ -10957,7 +10957,7 @@ const i = {
             i: [{
                 t: 3
             }],
-            s: 'You can manage or cancel anytime under <span class="f-helper inline-block">Account → My Subscriptions</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binspan>.'
+            s: 'You can manage or cancel anytime under <span class="f-helper inline-block">Account → My Subscriptions</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.binspan>.'
         }
     },
     subscription_policy_reschedule_title: {
@@ -10987,7 +10987,7 @@ const i = {
             i: [{
                 t: 3
             }],
-            s: 'You can move any visit to another slot within <span class="bold">7 days</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binspan> of the original date.'
+            s: 'You can move any visit to another slot within <span class="bold">7 days</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.binspan> of the original date.'
         }
     },
     subscription_policy_reschedule_label_2: {
@@ -11007,7 +11007,7 @@ const i = {
             i: [{
                 t: 3
             }],
-            s: 'Rescheduling must take place <span class="bold">6 hours</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binspan> before the session.'
+            s: 'Rescheduling must take place <span class="bold">6 hours</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.binspan> before the session.'
         }
     },
     subscription_policy_reschedule_table_title: {
@@ -11103,7 +11103,7 @@ const i = {
             i: [{
                 t: 3
             }],
-            s: 'You can pause your plan once per package period, for up to <span class="bold">14 days</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binspan>.'
+            s: 'You can pause your plan once per package period, for up to <span class="bold">14 days</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.binspan>.'
         }
     },
     subscription_policy_pause_text_2_html: {
@@ -11163,7 +11163,7 @@ const i = {
             i: [{
                 t: 3
             }],
-            s: 'If you’ve completed the minimum required sessions, the refund is <span class="bold">penalty-free</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binspan>.'
+            s: 'If you’ve completed the minimum required sessions, the refund is <span class="bold">penalty-free</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.binspan>.'
         }
     },
     subscription_policy_refund_table_title: {
@@ -11223,7 +11223,7 @@ const i = {
             i: [{
                 t: 3
             }],
-            s: 'To cancel, go to <span class="f-helper inline-block">Account → My Subscriptions → Cancel</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binspan>.'
+            s: 'To cancel, go to <span class="f-helper inline-block">Account → My Subscriptions → Cancel</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.binspan>.'
         }
     },
     subscription_policy_need_help_title: {
@@ -11243,7 +11243,7 @@ const i = {
             i: [{
                 t: 3
             }],
-            s: 'Chat with us directly in Support, or request a call-back via <span class="f-helper inline-block">Account → Help</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binspan>.'
+            s: 'Chat with us directly in Support, or request a call-back via <span class="f-helper inline-block">Account → Help</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.binspan>.'
         }
     },
     my_schedule: {
@@ -11843,7 +11843,7 @@ const i = {
             i: [{
                 t: 3
             }],
-            s: "We’d still love to serve you. <span class='bold'>Reschedule</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binspan> your session in seconds, so you don't lose your subscription discount and preferred professional."
+            s: "We’d still love to serve you. <span class='bold'>Reschedule</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.binspan> your session in seconds, so you don't lose your subscription discount and preferred professional."
         }
     },
     cancellation_subscription_reschedule_title: {
@@ -12302,7 +12302,7 @@ const i = {
                 k: "voucherCode"
             }, {
                 t: 3,
-                v: "</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binspan> voucher code is ready, please select one or more options from the list to get this voucher code applied!"
+                v: "</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.binspan> voucher code is ready, please select one or more options from the list to get this voucher code applied!"
             }]
         }
     },
@@ -12788,7 +12788,7 @@ const i = {
                 k: "days"
             }, {
                 t: 3,
-                v: "</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binstrong> days"
+                v: "</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.binstrong> days"
             }]
         }
     },
@@ -13202,13 +13202,13 @@ const i = {
             t: 2,
             i: [{
                 t: 3,
-                v: "Your service has been reassigned to a top-rated professional. <strong>Prefer someone else?</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binstrong> Please select another professional & get <strong>"
+                v: "Your service has been reassigned to a top-rated professional. <strong>Prefer someone else?</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.binstrong> Please select another professional & get <strong>"
             }, {
                 t: 4,
                 k: "amount"
             }, {
                 t: 3,
-                v: "</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binstrong> once booking has been completed."
+                v: "</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.binstrong> once booking has been completed."
             }]
         }
     },
@@ -13218,13 +13218,13 @@ const i = {
             t: 2,
             i: [{
                 t: 3,
-                v: "Your booking has been moved to the earliest available slot due to an operational issue. <strong>Prefer another time?</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binstrong> Select a new slot & get <strong>"
+                v: "Your booking has been moved to the earliest available slot due to an operational issue. <strong>Prefer another time?</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.binstrong> Select a new slot & get <strong>"
             }, {
                 t: 4,
                 k: "amount"
             }, {
                 t: 3,
-                v: "</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binstrong> once booking is completed."
+                v: "</assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binassets-local/assets-local/bd0188b5c32d91f9.binbd0188b5c32d91f9.binbd0188b5c32d91f9.binstrong> once booking is completed."
             }]
         }
     },
