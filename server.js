@@ -30,14 +30,18 @@ const db = new sqlite3.Database(dbPath, (err) => {
 });
 
 // API Endpoints
-app.post('/api/bookings', (req, res) => {
-    const { service_name, customer_name, phone, address, booking_date } = req.body;
+app.post(['/api/bookings', '/api/book'], (req, res) => {
+    const service_name = req.body.service_name || req.body.service;
+    const customer_name = req.body.customer_name || req.body.name;
+    const phone = req.body.phone;
+    const address = req.body.address;
+    const booking_date = req.body.booking_date || req.body.date;
     const query = `INSERT INTO bookings (service_name, customer_name, phone, address, booking_date) VALUES (?, ?, ?, ?, ?)`;
     db.run(query, [service_name, customer_name, phone, address, booking_date], function(err) {
         if (err) {
             res.status(500).json({ success: false, error: err.message });
         } else {
-            res.json({ success: true, bookingId: this.lastID });
+            res.json({ success: true, bookingId: this.lastID, orderId: this.lastID });
         }
     });
 });
