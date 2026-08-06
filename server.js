@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const sqlite3 = require('sqlite3').verbose();
+const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -31,11 +32,12 @@ const db = new sqlite3.Database(dbPath, (err) => {
 
 // API Endpoints
 app.post(['/api/bookings', '/api/book'], (req, res) => {
-    const service_name = req.body.service_name || req.body.service;
-    const customer_name = req.body.customer_name || req.body.name;
-    const phone = req.body.phone;
-    const address = req.body.address;
-    const booking_date = req.body.booking_date || req.body.date;
+    const service_name = req.body.service_name || req.body.service || 'General Service';
+    const customer_name = req.body.customer_name || req.body.name || 'Valued Customer';
+    const phone = req.body.phone || 'N/A';
+    const address = req.body.address || 'N/A';
+    const booking_date = req.body.booking_date || req.body.date || new Date().toISOString();
+
     const query = `INSERT INTO bookings (service_name, customer_name, phone, address, booking_date) VALUES (?, ?, ?, ?, ?)`;
     db.run(query, [service_name, customer_name, phone, address, booking_date], function(err) {
         if (err) {
@@ -69,42 +71,42 @@ app.post('/api/admin/bookings/:id/status', (req, res) => {
 });
 
 app.get('/admin', (req, res) => {
-    res.sendFile(path.join(__dirname, 'admin.html'));
+    const adminPath = path.join(__dirname, 'admin.html');
+    if (fs.existsSync(adminPath)) {
+        res.sendFile(adminPath);
+    } else {
+        res.send('Admin dashboard not found.');
+    }
 });
 
-// Language Routes
-app.get('/en', (req, res) => {
+// Language & Service Routes
+app.get(['/en', '/en-AE', '/en/*'], (req, res) => {
     const enPath = path.join(__dirname, 'en-AE.html');
-    if (require('fs').existsSync(enPath)) {
+    if (fs.existsSync(enPath)) {
         res.sendFile(enPath);
     } else {
         res.sendFile(path.join(__dirname, 'index.html'));
     }
 });
 
-app.get('/en-AE', (req, res) => {
-    const enPath = path.join(__dirname, 'en-AE.html');
-    if (require('fs').existsSync(enPath)) {
-        res.sendFile(enPath);
+app.get(['/ar', '/ar-AE', '/ar/*', '/services/*', '/cleaning', '/salon', '/ac', '/deep', '/massage', '/pest'], (req, res) => {
+    const arPath = path.join(__dirname, 'ar-AE.html');
+    if (fs.existsSync(arPath)) {
+        res.sendFile(arPath);
     } else {
         res.sendFile(path.join(__dirname, 'index.html'));
     }
-});
-
-// Arabic default route
-app.get('/ar-AE', (req, res) => {
-    res.sendFile(path.join(__dirname, 'ar-AE.html'));
 });
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Catch-all for subpaths
+// Universal Catch-all
 app.get('*', (req, res) => {
-    if (req.path.startsWith('/en')) {
+    if (req.path.includes('en') || req.path.includes('English')) {
         const enPath = path.join(__dirname, 'en-AE.html');
-        if (require('fs').existsSync(enPath)) {
+        if (fs.existsSync(enPath)) {
             res.sendFile(enPath);
             return;
         }
