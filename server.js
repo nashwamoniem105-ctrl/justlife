@@ -135,6 +135,15 @@ app.get('/admin', (req, res) => {
 
 // Restore image components that can become empty after client hydration when
 // the original image metadata endpoint is unavailable in the mirrored site.
+const homepageStabilityCss = `<style data-homepage-stability>
+/* Static mirror must remain visible after scroll and browser repaint. */
+#desktop-justlife-logo, #desktop-justlife-logo img, .home-wrapper img, .blog-categories-section img, .features-section img, .insurance-section img, .mobile-app-downloader img, .footer-bottom img { opacity: 1 !important; visibility: visible !important; }
+#desktop-justlife-logo { display: block !important; }
+.home-wrapper img { content-visibility: visible !important; }
+.blog-categories-section, .features-section, .insurance-section, .mobile-app-downloader { opacity: 1 !important; visibility: visible !important; transform: none !important; }
+.insurance-section { background: #00AEEF !important; color: #fff !important; }
+.insurance-section .section-title-wrapper, .insurance-section .section-title-wrapper *, .insurance-section h2, .insurance-section p { color: #fff !important; }
+</style>`;
 const appSectionFallback = `<script data-local-app-fallback>(function(){function img(src,alt,w,h){var i=document.createElement('img');i.src=src;i.alt=alt;i.loading='lazy';if(w)i.width=w;if(h)i.height=h;return i;}function restore(){document.querySelectorAll('.mobile-app-downloader .app-icons').forEach(function(box){var a=box.querySelectorAll('a');if(a[0]&&!a[0].querySelector('img'))a[0].appendChild(img('/assets-local/faf9712b1a01f868.bindownload-app-android@2x.jpg?f=webp','Download Android App'));if(a[1]&&!a[1].querySelector('img'))a[1].appendChild(img('/assets-local/faf9712b1a01f868.bindownload-app-ios@2x.jpg?f=webp','Download iOS App'));});document.querySelectorAll('.footer-bottom .app-icons').forEach(function(box){var a=box.querySelectorAll('a');if(a[0]&&!a[0].querySelector('img'))a[0].appendChild(img('/assets-local/faf9712b1a01f868.binhome/appstore.png?f=webp','Download iOS App',125,40));if(a[1]&&!a[1].querySelector('img'))a[1].appendChild(img('/assets-local/faf9712b1a01f868.binhome/playstore.png?f=webp','Download Android App',125,40));});document.querySelectorAll('.mobile-app-downloader .right-content').forEach(function(box){if(!box.querySelector('img'))box.appendChild(img('/assets-local/faf9712b1a01f868.binhome/apps.webp?f=webp','Footer app',395,332));});}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',restore);else restore();new MutationObserver(restore).observe(document.documentElement,{childList:true,subtree:true});})();</script>`;
 function sendMirroredHtml(res, file) {
     try {
@@ -145,7 +154,7 @@ function sendMirroredHtml(res, file) {
             html = html.replace(/<script\b[^>]*src=["'][^"']*\/_nuxt\/[^"']*["'][^>]*><\/script>/gi, '');
             html = html.replace(/\sloading=["']lazy["']/gi, ' loading="eager"');
             const localStyles = ['SectionTitle.VdBQ9ygq.css','MobileAppDownloader.BatusIl2.css','index.V_X9n60H.css','Loading.xBdaesc-.css','TitleTextItem.BgfIqJ8y.css','CaptionTextItem.B98ug7T9.css','LocationSearch.ioU0w2Z7.css','HelperTextItem.DCvG-J3h.css','ButtonTextItem.Clk8LGEf.css','Notification.Bd6p11ET.css','default.myeD_meZ.css'].map((name) => `<link rel="stylesheet" href="/_nuxt/6/${name}">`).join('');
-            html = html.replace(/<\/head>/i, `${localStyles}</head>`);
+            html = html.replace(/<\/head>/i, `${localStyles}${homepageStabilityCss}</head>`);
         }
         // Keep mirrored pages fully standalone: route CDN assets to the downloaded local tree
         // and convert original-site absolute links into local-relative links.
