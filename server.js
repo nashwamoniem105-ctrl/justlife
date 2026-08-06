@@ -79,34 +79,40 @@ app.get('/admin', (req, res) => {
     }
 });
 
-// Explicit Service Routes for standalone HTML files
-app.get('/ar-AE/:service', (req, res, next) => {
-    const serviceName = req.params.service;
-    const filePath = path.join(__dirname, 'ar-AE', `${serviceName}.html`);
-    if (fs.existsSync(filePath)) {
-        res.sendFile(filePath);
-    } else {
-        next();
+// Route every mirrored page through its clean URL, e.g. /ar-AE/house-cleaning
+// -> /ar-AE/house-cleaning.html. The requested path is normalized first so a
+// URL can never escape the project directory.
+function mirroredPageForRequest(requestPath) {
+    let pathname = decodeURIComponent((requestPath || '/').split('?')[0]);
+    pathname = pathname.replace(/\/{2,}/g, '/');
+    if (!pathname.startsWith('/')) pathname = `/${pathname}`;
+    if (pathname === '/') return path.join(__dirname, 'index.html');
+
+    const cleanPath = pathname.replace(/^\/+|\/+$/g, '');
+    const segments = cleanPath.split('/').filter(Boolean);
+    if (segments.some((segment) => segment === '.' || segment === '..')) return null;
+
+    // Language landing pages are stored at the project root.
+    if (segments.length === 1 && ['ar-AE', 'ar-SA', 'en-AE'].includes(segments[0])) {
+        return path.join(__dirname, `${segments[0]}.html`);
     }
-});
 
-app.get(['/ar', '/ar-AE', '/en', '/en-AE'], (req, res) => {
-    const langFile = req.path.startsWith('/en') ? 'en-AE.html' : 'ar-AE.html';
-    const targetPath = path.join(__dirname, langFile);
-    if (fs.existsSync(targetPath)) {
-        res.sendFile(targetPath);
-    } else {
-        res.sendFile(path.join(__dirname, 'index.html'));
+    const candidate = path.resolve(__dirname, `${cleanPath}.html`);
+    const projectRoot = path.resolve(__dirname);
+    if (!candidate.startsWith(`${projectRoot}${path.sep}`)) return null;
+    return candidate;
+}
+
+app.get('*', (req, res, next) => {
+    const mirroredPage = mirroredPageForRequest(req.path);
+    if (mirroredPage && fs.existsSync(mirroredPage)) {
+        return res.sendFile(mirroredPage);
     }
+    return next();
 });
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
-
-// Universal Catch-all
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'ar-AE.html'));
+app.use((req, res) => {
+    res.status(404).sendFile(path.join(__dirname, 'ar-AE.html'));
 });
 
 app.listen(PORT, '0.0.0.0', () => {
