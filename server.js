@@ -147,6 +147,11 @@ function sendMirroredHtml(res, file) {
             const localStyles = ['SectionTitle.VdBQ9ygq.css','MobileAppDownloader.BatusIl2.css','index.V_X9n60H.css','Loading.xBdaesc-.css','TitleTextItem.BgfIqJ8y.css','CaptionTextItem.B98ug7T9.css','LocationSearch.ioU0w2Z7.css','HelperTextItem.DCvG-J3h.css','ButtonTextItem.Clk8LGEf.css','Notification.Bd6p11ET.css','default.myeD_meZ.css'].map((name) => `<link rel="stylesheet" href="/_nuxt/6/${name}">`).join('');
             html = html.replace(/<\/head>/i, `${localStyles}</head>`);
         }
+        // Keep mirrored pages fully standalone: route CDN assets to the downloaded local tree
+        // and convert original-site absolute links into local-relative links.
+        html = html.replace(/https:\/\/deax38zvkau9d\.cloudfront\.net/g, '/deax38zvkau9d.cloudfront.net');
+        html = html.replace(/https?:\/\/(?:[^/"'\s]+\.)?justlife\.com/gi, '');
+        html = html.replace(/https?:\/\/localhost:\d+/gi, '');
         if (!html.includes('data-local-app-fallback')) html = html.replace(/<\/body>/i, `${appSectionFallback}</body>`);
         res.type('html').send(html);
     } catch (_) { res.sendFile(file); }
