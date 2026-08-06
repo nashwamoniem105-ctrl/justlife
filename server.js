@@ -171,11 +171,17 @@ function mirroredPageForRequest(requestPath) {
     return candidate;
 }
 
-// Demo booking funnel: every service can open the same four-step local checkout UI.
-// It never calls a payment provider; payment success/failure is simulated in booking.html.
-app.get(/^\/((?:ar-AE|ar-SA|en-AE)\/[^/]+)\/checkout(?:\/[^/]+)?$/, (req, res, next) => {
-    const bookingPath = path.join(__dirname, 'booking.html');
-    if (fs.existsSync(bookingPath)) return res.sendFile(bookingPath);
+// Serve the downloaded checkout page that belongs to the exact original route.
+// Each service keeps its own original checkout path and rendered HTML instead of sharing booking.html.
+const mirroredCheckoutRoot = path.join(__dirname, 'mirrored-checkouts');
+app.get(/^\/(ar-AE|ar-SA|en-AE)\/(.+)\/checkout(?:\/(details|flex))?\/?$/, (req, res, next) => {
+    const lang = req.params[0];
+    const rest = req.params[1];
+    const step = req.params[2] || 'flex';
+    const file = path.join(mirroredCheckoutRoot, lang, rest, 'checkout', `${step}.html`);
+    if (file.startsWith(`${mirroredCheckoutRoot}${path.sep}`) && fs.existsSync(file)) {
+        return sendMirroredHtml(res, file);
+    }
     return next();
 });
 

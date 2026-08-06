@@ -1,0 +1,257 @@
+[
+  {
+    "service": "Home Cleaning",
+    "sourcePage": "https://www.justlife.com/en-AE/house-cleaning",
+    "checkout": "https://www.justlife.com/en-AE/home-cleaning/checkout/details"
+  },
+  {
+    "service": "Women’s Salon",
+    "sourcePage": "https://www.justlife.com/en-AE/salon-services-at-home",
+    "checkout": "https://www.justlife.com/en-AE/beauty-for-her/checkout/flex"
+  },
+  {
+    "service": "Women’s Spa",
+    "sourcePage": "https://www.justlife.com/en-AE/spa-and-massage-service-at-home",
+    "checkout": "https://www.justlife.com/en-AE/spa-treatments/checkout/flex"
+  },
+  {
+    "service": "Furniture Cleaning",
+    "sourcePage": "https://www.justlife.com/en-AE/furniture-cleaning",
+    "checkout": "https://www.justlife.com/en-AE/furniture-cleaning/checkout/flex"
+  },
+  {
+    "service": "A/C Cleaning",
+    "sourcePage": "https://www.justlife.com/en-AE/ac-cleaning",
+    "checkout": "https://www.justlife.com/en-AE/ac_cleaning_at_home/checkout/flex"
+  },
+  {
+    "service": "Premium Men’s Grooming",
+    "sourcePage": "https://www.justlife.com/en-AE/mens-salon",
+    "checkout": "https://www.justlife.com/en-AE/premium-grooming/checkout/flex"
+  },
+  {
+    "service": "Pest Control",
+    "sourcePage": "https://www.justlife.com/en-AE/pest-control",
+    "checkout": "https://www.justlife.com/en-AE/pest-control/checkout/flex"
+  },
+  {
+    "service": "Maid Service",
+    "sourcePage": "https://www.justlife.com/en-AE/maid-service",
+    "checkout": "https://www.justlife.com/en-AE/home-cleaning/checkout/details"
+  },
+  {
+    "service": "Carpet Cleaning",
+    "sourcePage": "https://www.justlife.com/en-AE/carpet-cleaning",
+    "checkout": "https://www.justlife.com/en-AE/furniture-cleaning/checkout/flex"
+  },
+  {
+    "service": "Mattress Cleaning",
+    "sourcePage": "https://www.justlife.com/en-AE/mattress-cleaning",
+    "checkout": "https://www.justlife.com/en-AE/furniture-cleaning/checkout/flex"
+  },
+  {
+    "service": "Sofa Cleaning",
+    "sourcePage": "https://www.justlife.com/en-AE/sofa-cleaning",
+    "checkout": "https://www.justlife.com/en-AE/furniture-cleaning/checkout/flex"
+  },
+  {
+    "service": "Curtain Cleaning",
+    "sourcePage": "https://www.justlife.com/en-AE/curtain-cleaning",
+    "checkout": "https://www.justlife.com/en-AE/furniture-cleaning/checkout/flex"
+  },
+  {
+    "service": "Deep Cleaning",
+    "sourcePage": "https://www.justlife.com/en-AE/deep-cleaning",
+    "checkout": "https://www.justlife.com/en-AE/deep-cleaning-ae/checkout/flex"
+  },
+  {
+    "service": "Move In & Out Cleaning Services",
+    "sourcePage": "https://www.justlife.com/en-AE/move-in-out-cleaning-services",
+    "checkout": "https://www.justlife.com/en-AE/deep-cleaning-ae/checkout/flex"
+  },
+  {
+    "service": "House Cleaning",
+    "sourcePage": "https://www.justlife.com/en-AE/house-cleaning",
+    "checkout": "https://www.justlife.com/en-AE/home-cleaning/checkout/details"
+  },
+  {
+    "service": "Laundry & Dry Cleaning",
+    "sourcePage": "https://www.justlife.com/en-AE/laundry",
+    "checkout": "https://www.justlife.com/en-AE/laundry-and-dry-cleaning/checkout/flex"
+  },
+  {
+    "service": "AC Cleaning Service",
+    "sourcePage": "https://www.justlife.com/en-AE/ac-cleaning",
+    "checkout": "https://www.justlife.com/en-AE/ac_cleaning_at_home/checkout/flex"
+  },
+  {
+    "service": "Women's Salon",
+    "sourcePage": "https://www.justlife.com/en-AE/salon-services-at-home",
+    "checkout": "https://www.justlife.com/en-AE/beauty-for-her/checkout/flex"
+  },
+  {
+    "service": "Women's Spa",
+    "sourcePage": "https://www.justlife.com/en-AE/spa-and-massage-service-at-home",
+    "checkout": "https://www.justlife.com/en-AE/spa-treatments/checkout/flex"
+  },
+  {
+    "service": "Men's Salon",
+    "sourcePage": "https://www.justlife.com/en-AE/mens-salon",
+    "checkout": "https://www.justlife.com/en-AE/premium-grooming/checkout/flex"
+  },
+  {
+    "service": "Pest Control Service",
+    "sourcePage": "https://www.justlife.com/en-AE/pest-control",
+    "checkout": "https://www.justlife.com/en-AE/pest-control/checkout/flex"
+  },
+  {
+    "service": "Men's Spa",
+    "sourcePage": "https://www.justlife.com/en-AE/mens-spa",
+    "checkout": "https://www.justlife.com/en-AE/mens-spa/checkout/flex"
+  },
+  {
+    "service": "Men's Grooming",
+    "sourcePage": "https://www.justlife.com/en-AE/mens-grooming",
+    "checkout": "https://www.justlife.com/en-AE/premium-grooming/checkout/flex"
+  },
+  {
+    "service": "Hair Salon",
+    "sourcePage": "https://www.justlife.com/en-AE/hair-salon-at-home",
+    "checkout": "https://www.justlife.com/en-AE/beauty-for-her/checkout/flex"
+  },
+  {
+    "service": "Pet Grooming",
+    "sourcePage": "https://www.justlife.com/en-AE/pet-grooming",
+    "checkout": "https://www.justlife.com/en-AE/pet-grooming/checkout/flex"
+  },
+  {
+    "service": "IV Therapy",
+    "sourcePage": "https://www.justlife.com/en-AE/iv-therapy-at-home",
+    "checkout": "https://www.justlife.com/en-AE/iv-therapy-at-home/checkout/flex"
+  },
+  {
+    "service": "Babysitting At Home",
+    "sourcePage": "https://www.justlife.com/en-AE/babysitting-at-home",
+    "checkout": "https://www.justlife.com/en-AE/babysitting-at-home/checkout/flex"
+  },
+  {
+    "service": "Car Wash At Home",
+    "sourcePage": "https://www.justlife.com/en-AE/car-wash-at-home",
+    "checkout": "https://www.justlife.com/en-AE/car-wash-at-home/checkout/flex"
+  },
+  {
+    "service": "Plumber Services",
+    "sourcePage": "https://www.justlife.com/en-AE/plumber-services",
+    "checkout": "https://www.justlife.com/en-AE/handyman-and-maintenance/checkout/flex"
+  },
+  {
+    "service": "Handyman Services",
+    "sourcePage": "https://www.justlife.com/en-AE/handyman-services",
+    "checkout": "https://www.justlife.com/en-AE/handyman-and-maintenance/checkout/flex"
+  },
+  {
+    "service": "Electrician Services",
+    "sourcePage": "https://www.justlife.com/en-AE/electrician-services",
+    "checkout": "https://www.justlife.com/en-AE/handyman-and-maintenance/checkout/flex"
+  },
+  {
+    "service": "Deep Cleaning Home Services",
+    "sourcePage": "https://www.justlife.com/en-AE/deep-cleaning-2",
+    "checkout": "https://www.justlife.com/en-AE/deep-cleaning-ae/checkout/flex?step=1&voucher=DCSALE"
+  },
+  {
+    "service": "Home Painting",
+    "sourcePage": "https://www.justlife.com/en-AE/home-painting-services",
+    "checkout": "https://www.justlife.com/en-AE/home-painting/checkout/flex"
+  },
+  {
+    "service": "Packers and Movers",
+    "sourcePage": "https://www.justlife.com/en-AE/packers-and-movers",
+    "checkout": "https://www.justlife.com/en-AE/packers-and-movers/checkout/flex"
+  },
+  {
+    "service": "Physiotherapy at Home",
+    "sourcePage": "https://www.justlife.com/en-AE/physiotherapy-at-home",
+    "checkout": "https://www.justlife.com/en-AE/physiotherapy-at-home/checkout/flex"
+  },
+  {
+    "service": "Part Time Maid Services",
+    "sourcePage": "https://www.justlife.com/en-AE/part-time-maid-services",
+    "checkout": "https://www.justlife.com/en-AE/home-cleaning/checkout/details"
+  },
+  {
+    "service": "Psychotherapy & Counselling",
+    "sourcePage": "https://www.justlife.com/en-AE/psychotherapy-counselling",
+    "checkout": "https://www.justlife.com/en-AE/online-therapy-flex/checkout/flex"
+  },
+  {
+    "service": "Vaccines at Home",
+    "sourcePage": "https://www.justlife.com/en-AE/vaccines-at-home",
+    "checkout": "https://www.justlife.com/en-AE/flu-vaccine-at-home/checkout/flex"
+  },
+  {
+    "service": "Commercial Cleaning",
+    "sourcePage": "https://www.justlife.com/en-AE/commercial-cleaning",
+    "checkout": "https://www.justlife.com/en-AE/home-cleaning/checkout/details"
+  },
+  {
+    "service": "Office Cleaning",
+    "sourcePage": "https://www.justlife.com/en-AE/office-cleaning",
+    "checkout": "https://www.justlife.com/en-AE/home-cleaning/checkout/details"
+  },
+  {
+    "service": "Villa Cleaning",
+    "sourcePage": "https://www.justlife.com/en-AE/villa-cleaning",
+    "checkout": "https://www.justlife.com/en-AE/home-cleaning/checkout/details"
+  },
+  {
+    "service": "Floor Cleaning",
+    "sourcePage": "https://www.justlife.com/en-AE/floor-cleaning",
+    "checkout": "https://www.justlife.com/en-AE/home-cleaning/checkout/details"
+  },
+  {
+    "service": "Waxing Service",
+    "sourcePage": "https://www.justlife.com/en-AE/waxing-services-at-home",
+    "checkout": "https://www.justlife.com/en-AE/beauty-for-her/checkout/flex"
+  },
+  {
+    "service": "Doctor on Call",
+    "sourcePage": "https://www.justlife.com/en-AE/doctor-on-call",
+    "checkout": "https://www.justlife.com/en-AE/doctor-at-home/checkout/flex"
+  },
+  {
+    "service": "Facial Treatment Service",
+    "sourcePage": "https://www.justlife.com/en-AE/facial-treatment-at-home",
+    "checkout": "https://www.justlife.com/en-AE/beauty-for-her/checkout/flex"
+  },
+  {
+    "service": "Eyebrow Threading",
+    "sourcePage": "https://www.justlife.com/en-AE/eyebrow-threading-at-home",
+    "checkout": "https://www.justlife.com/en-AE/beauty-for-her/checkout/flex"
+  },
+  {
+    "service": "Flu Vaccine",
+    "sourcePage": "https://www.justlife.com/en-AE/flu-vaccine-at-home",
+    "checkout": "https://www.justlife.com/en-AE/flu-vaccine-at-home/checkout/flex"
+  },
+  {
+    "service": "Apartment Cleaning",
+    "sourcePage": "https://www.justlife.com/en-AE/apartment-cleaning",
+    "checkout": "https://www.justlife.com/en-AE/home-cleaning/checkout/details"
+  },
+  {
+    "service": "Oxygen Therapy",
+    "sourcePage": "https://www.justlife.com/en-AE/oxygen-therapy-at-home",
+    "checkout": "https://www.justlife.com/en-AE/iv-therapy-at-home/checkout/flex"
+  },
+  {
+    "service": "GLP-1 Weight Loss",
+    "sourcePage": "https://www.justlife.com/en-AE/glp-1-weight-loss-program",
+    "checkout": "https://www.justlife.com/en-AE/weight-loss-program/checkout/flex"
+  },
+  {
+    "service": "Pet Healthcare",
+    "sourcePage": "https://www.justlife.com/en-AE/vet-at-home",
+    "checkout": "https://www.justlife.com/en-AE/pet-healthcare/checkout/flex"
+  }
+]
