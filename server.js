@@ -68,8 +68,43 @@ app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, 'admin.html'));
 });
 
-// Catch-all to serve original ar-AE.html (index.html) for all site paths so Nuxt router handles original navigation identically
+// Language Routes
+app.get('/en', (req, res) => {
+    const enPath = path.join(__dirname, 'en-AE.html');
+    if (require('fs').existsSync(enPath)) {
+        res.sendFile(enPath);
+    } else {
+        res.sendFile(path.join(__dirname, 'index.html'));
+    }
+});
+
+app.get('/en-AE', (req, res) => {
+    const enPath = path.join(__dirname, 'en-AE.html');
+    if (require('fs').existsSync(enPath)) {
+        res.sendFile(enPath);
+    } else {
+        res.sendFile(path.join(__dirname, 'index.html'));
+    }
+});
+
+// Arabic default route
+app.get('/ar-AE', (req, res) => {
+    res.sendFile(path.join(__dirname, 'ar-AE.html'));
+});
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Catch-all for subpaths
 app.get('*', (req, res) => {
+    if (req.path.startsWith('/en')) {
+        const enPath = path.join(__dirname, 'en-AE.html');
+        if (require('fs').existsSync(enPath)) {
+            res.sendFile(enPath);
+            return;
+        }
+    }
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 

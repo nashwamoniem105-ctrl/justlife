@@ -1,1 +1,12 @@
-.title-text-item[data-v-dbf9b1f9]{font-size:1.125rem;font-stretch:normal;font-style:normal;font-weight:700;letter-spacing:normal;line-height:1.5rem}.title-text-item.has-small-size[data-v-dbf9b1f9]{font-size:.825rem}
+.title-text-item[data-v-dbf9b1f9] {
+    font-size: 1.125rem;
+    font-stretch: normal;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: normal;
+    line-height: 1.5rem
+}
+
+.title-text-item.has-small-size[data-v-dbf9b1f9] {
+    font-size: .825rem
+}
